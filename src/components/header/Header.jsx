@@ -20,7 +20,7 @@ const Header = () => {
       {
         user &&
         <div className="flex gap-3 items-center">
-          <p className="font-bold text-lg">{user.displayName}</p>
+          <p className="font-bold text-lg uppercase">{user.displayName}</p>
           <button className="h-fit bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={handleSignout}>Signout</button>
         </div>
       }
