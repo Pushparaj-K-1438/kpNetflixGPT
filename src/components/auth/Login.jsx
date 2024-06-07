@@ -2,17 +2,62 @@ import { useRef, useState } from 'react'
 import { LOGIN_BG } from '../../utils/image'
 import Header from '../header/Header'
 import { validateAuthForm } from '../../utils/loginFormValidation';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from '../../utils/firebase'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../utils/userSlice';
+
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const toggleSignIn = () => {
     setIsSignIn(!isSignIn);
   }
+  const fullname = useRef(null);
   const userName = useRef(null);
   const password = useRef(null);
   const handleSubmit = () => {
     const message = validateAuthForm(userName.current.value, password.current.value);
     setErrorMessage(message);
+    if (message) return;
+
+    if (!isSignIn) {
+      createUserWithEmailAndPassword(auth, userName.current.value, password.current.value)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullname.current.value,
+          }).then(() => {
+            const { uid, email, displayName } = auth.currentUser;
+            dispatch(login({ uid: uid, email: email, displayName: displayName }));
+            navigate("/browse");
+          }).catch((error) => {
+            setErrorMessage(error);
+          });
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(auth, userName.current.value, password.current.value)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          const { uid, email, displayName } = user;
+            dispatch(login({ uid: uid, email: email, displayName: displayName }));
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    }
   }
   return (
     <div className='h-screen bg-cover bg-no-repeat bg-center flex flex-col' style={{ backgroundImage: `url(${LOGIN_BG})`, backgroundColor: 'rgba(51, 51, 51, 0.5)' }}>
@@ -25,16 +70,16 @@ const Login = () => {
             }
           </h2>
           <div className="flex flex-col gap-4 w-full">
-            <form onSubmit={(e) => {e.preventDefault()}} className="flex flex-col gap-8">
+            <form onSubmit={(e) => { e.preventDefault() }} className="flex flex-col gap-8">
               <div className='flex flex-col gap-3'>
-              {
-                !isSignIn &&
-                <input type="text" name="" placeholder="Fullname" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
-              }
+                {
+                  !isSignIn &&
+                  <input ref={fullname} type="text" name="" placeholder="Fullname" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
+                }
 
-              <input ref={userName} type="text" name="" placeholder="Username" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
-              <input ref={password} type="text" name="" placeholder="Password" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
-              <p className='text-red-700 font-bold text-sm'>{errorMessage}</p>
+                <input ref={userName} type="text" name="" placeholder="Username" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
+                <input ref={password} type="password" name="" placeholder="Password" className="px-2 py-2 border border-red-900 rounded bg-transparent" />
+                <p className='text-red-700 font-bold text-sm'>{errorMessage}</p>
               </div>
               <button type="submit" className='bg-red-800 flex items-center justify-center p-2 rounded' onClick={handleSubmit}>
                 {
