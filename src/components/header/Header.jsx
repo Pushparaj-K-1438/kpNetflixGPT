@@ -3,17 +3,35 @@ import { auth } from "../../utils/firebase"
 import { useNavigate } from "react-router-dom"
 import { signOut } from "firebase/auth"
 import { useSelector } from "react-redux"
+import { onAuthStateChanged } from "firebase/auth"
+import { useEffect } from 'react'
+import { login, logout } from '../../utils/userSlice'
+import { useDispatch } from 'react-redux'
+
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(store => store.user);
   const handleSignout = () => {
     signOut(auth).then(() => {
-      navigate("/");
     }).catch((error) => {
       console.log(error)
     });
   }
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const { uid, email, displayName } = user;
+            dispatch(login({ uid: uid, email: email, displayName: displayName }));
+            navigate("/browse");
+        } else {
+            dispatch(logout());
+            navigate("/");
+        }
+    });
+    return () => unSubscribe();
+}, []);
   return (
     <div className="flex justify-between p-4 items-center">
       <img className="h-28" src={HEADER_LOGO} alt="Logo Image" />
