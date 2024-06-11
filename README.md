@@ -21,3 +21,5 @@
 - BugFix: Signup user displayName and profile picture update
 - Bugfix: if user not authenticated then redirect to login/browse page
 - Unsubscribed to onAuthStateChanged callback
+- Register TMDB API and created an app & got the access tocken
+- Get Data from TMDB now playing movies list API
