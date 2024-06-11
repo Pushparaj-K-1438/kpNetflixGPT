@@ -46,7 +46,7 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           const { uid, email, displayName } = user;
-            dispatch(login({ uid: uid, email: email, displayName: displayName }));
+          dispatch(login({ uid: uid, email: email, displayName: displayName }));
         })
         .catch((error) => {
           const errorCode = error.code;
