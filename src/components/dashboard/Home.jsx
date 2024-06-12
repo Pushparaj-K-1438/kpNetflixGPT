@@ -1,22 +1,16 @@
-import { useEffect } from "react";
-import { NOW_PLAYING_API, OPTIONS } from "../../utils/movieConstants"
+import useNowPlayingMovies from "../../hooks/useNowPlayingMovies"
 import Header from "../header/Header"
+import MainContainer from "./layout/MainContainer";
+import SecondaryContainer from "./layout/SecondaryContainer";
 
 const Home = () => {
-  const fetchMovies = async() => {
-    const response = await fetch(NOW_PLAYING_API, OPTIONS);
-    const fetchedJson = await response.json();
-    console.log(fetchedJson);
-  }
-
-  useEffect(() => {
-    fetchMovies();
-  },[])
+  useNowPlayingMovies();
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Header />
-      <div>
-        Dashboard
+      <div className="flex flex-col h-full px-4">
+        <MainContainer />
+        <SecondaryContainer />
       </div>
     </div>
   )

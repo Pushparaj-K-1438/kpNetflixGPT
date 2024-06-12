@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth"
 import { useSelector } from "react-redux"
 import { onAuthStateChanged } from "firebase/auth"
 import { useEffect } from 'react'
-import { login, logout } from '../../utils/userSlice'
+import { login, logout } from '../../redux/userSlice'
 import { useDispatch } from 'react-redux'
 
 
@@ -34,7 +34,7 @@ const Header = () => {
   }, []);
   return (
     <div className="flex justify-between p-4 items-center">
-      <img className="h-28" src={HEADER_LOGO} alt="Logo Image" />
+      <img className="flex h-fit w-28" src={HEADER_LOGO} alt="Logo Image" />
       {
         user &&
         <div className="flex gap-3 items-center">
