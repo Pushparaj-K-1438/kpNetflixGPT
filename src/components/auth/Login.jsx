@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
 import { LOGIN_BG } from '../../utils/image'
 import Header from '../header/Header'
-import { validateAuthForm } from '../../utils/loginFormValidation';
+import { validateAuthForm } from '../../validations/loginFormValidation';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../../utils/firebase'
 import { useDispatch } from 'react-redux';
-import { login } from '../../utils/userSlice';
+import { login } from '../../redux/userSlice';
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
