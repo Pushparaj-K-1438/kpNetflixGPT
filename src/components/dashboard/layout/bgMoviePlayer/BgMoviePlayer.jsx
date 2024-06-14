@@ -1,29 +1,17 @@
-import { useEffect } from "react";
-import { OPTIONS, TRAILER_API } from "../../../../utils/movieConstants";
-import { useDispatch, useSelector } from "react-redux";
-import { addTrailer } from "../../../../redux/movieSlice";
+import { useSelector } from "react-redux";
+import useMovieTrailer from "../../../../hooks/useMovieTrailer";
 
 const BgMoviePlayer = ({ movieId }) => {
   const trailerId = useSelector(store => store.playingMovies.trailer);
-  const dispatch = useDispatch();
-  const trailer = async () => {
-    const response = await fetch(TRAILER_API + movieId + "/videos?", OPTIONS);
-    const fetchedJson = await response.json();
-    const filteredVideo = fetchedJson.results.filter((item) => item.type === "Trailer");
-    const trailerVideo = filteredVideo.length ?filteredVideo[0] : fetchedJson.results[0];
-    dispatch(addTrailer(trailerVideo));
-  }
-  useEffect(() => {
-    trailer();
-  }, [])
+  useMovieTrailer(movieId);
   return (
-    <div>
-      <iframe 
-        width="560" 
-        height="315" 
-        src={"https://www.youtube.com/embed/"+trailerId?.key}
-        allowFullScreen>
+    <div className="absolute top-0 left-0 w-full h-full">
+      <iframe className="w-full aspect-video z-0 -top-3 relative"
+        src={"https://www.youtube.com/embed/" + trailerId?.key+"?&autoplay=1&mute=1"}
+        allowFullScreen
+        frameBorder="0">
       </iframe>
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30 z-1"></div>
     </div>
   )
 }

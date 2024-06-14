@@ -5,7 +5,7 @@ import BgMoviePlayer from "./bgMoviePlayer/BgMoviePlayer"
 const MainContainer = () => {
     const movieData = useSelector(store => store.playingMovies?.nowPlayingMovies);
     if(!movieData) return null;
-    const mainMovie = movieData[0];
+    const mainMovie = movieData[4];
     const {title, overview, id} = mainMovie;
     // console.log("movieData", mainMovie);
 

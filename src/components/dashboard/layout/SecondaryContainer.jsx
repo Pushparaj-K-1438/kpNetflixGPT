@@ -1,6 +1,6 @@
 const SecondaryContainer = () => {
   return (
-    <div>SecondaryContainer</div>
+    <div className="relative z-10">SecondaryContainer</div>
   )
 }
 
