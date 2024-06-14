@@ -7,4 +7,11 @@ export const OPTIONS = {
 }
 
 export const NOW_PLAYING_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1'
+
+export const POPULAR_MOVIES_API = 'https://api.themoviedb.org/3/movie/popular?page=1'
+
+export const UPCOMMING_MOVIES_API = 'https://api.themoviedb.org/3/movie/upcoming?page=1'
+
+export const TOP_RATED_API = 'https://api.themoviedb.org/3/movie/top_rated?page=1'
+
 export const TRAILER_API = 'https://api.themoviedb.org/3/movie/'
