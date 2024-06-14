@@ -33,12 +33,12 @@ const Header = () => {
     return () => unSubscribe();
   }, []);
   return (
-    <div className="flex justify-between p-4 items-center">
+    <div className="flex justify-between p-4 items-center relative z-10 bg-gradient-to-b from-black to-transparent">
       <img className="flex h-fit w-28" src={HEADER_LOGO} alt="Logo Image" />
       {
         user &&
         <div className="flex gap-3 items-center">
-          <p className="font-bold text-lg uppercase">{user.displayName}</p>
+          <p className="font-bold text-lg uppercase text-white">{user.displayName}</p>
           <button className="h-fit bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={handleSignout}>Signout</button>
         </div>
       }
