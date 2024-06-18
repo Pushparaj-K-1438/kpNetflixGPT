@@ -3,16 +3,16 @@ import BgMovieDetails from "./bgMoviePlayer/BgMovieDetails"
 import BgMoviePlayer from "./bgMoviePlayer/BgMoviePlayer"
 
 const MainContainer = () => {
-    const movieData = useSelector(store => store.playingMovies?.nowPlayingMovies);
-    if(!movieData) return null;
-    const mainMovie = movieData[4];
-    const {title, overview, id} = mainMovie;
-    // console.log("movieData", mainMovie);
+  const movieData = useSelector(store => store.movies?.nowPlayingMovies);
+  if (!movieData) return null;
+  const mainMovie = movieData[4];
+  const { title, overview, id } = mainMovie;
+  // console.log("movieData", mainMovie);
 
   return (
     <div>
-        <BgMoviePlayer movieId={id}/>
-        <BgMovieDetails title={title} description={overview}/>
+      <BgMoviePlayer movieId={id} />
+      <BgMovieDetails title={title} description={overview} />
     </div>
   )
 }
