@@ -1,4 +1,4 @@
-const lang = {
+const languages = {
     en: {
         search:"Search",
         searchPlacejolder:"What would you like to watch",
@@ -20,4 +20,4 @@ const lang = {
    
 }
 
-export default lang;
+export default languages;

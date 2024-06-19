@@ -23,3 +23,7 @@
 - Unsubscribed to onAuthStateChanged callback
 - Register TMDB API and created an app & got the access tocken
 - Get Data from TMDB now playing movies list API
+- used custom Hooks for fetching popular movies
+- Gpt Search Page
+- Multi-language support
+- 
