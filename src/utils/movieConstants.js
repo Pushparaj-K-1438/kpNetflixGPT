@@ -15,3 +15,5 @@ export const UPCOMMING_MOVIES_API = 'https://api.themoviedb.org/3/movie/upcoming
 export const TOP_RATED_API = 'https://api.themoviedb.org/3/movie/top_rated?page=1'
 
 export const TRAILER_API = 'https://api.themoviedb.org/3/movie/'
+
+export const SUPPORTED_LANGUAGES = [{identifier:'en',name:'English'}, {identifier:'kannada',name:'Kannada'}, {identifier:'tamil',name:'Tamil'}]
