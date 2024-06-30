@@ -1,9 +1,9 @@
 export const OPTIONS = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTEyNTYzMzJhN2VhNmUxM2E0MTgyZGJkZTA1YTg2MiIsInN1YiI6IjY2Njg4MThlZWRlMDc5MzdhZDFhMGEzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EaHNlFq9U9eGg_Qq2E_Kab773v6HfsC7r2wYybzFNlY'
-    }
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer ' + import.meta.env.VITE_GEMINI_API_KEY
+  }
 }
 
 export const NOW_PLAYING_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1'
@@ -16,4 +16,4 @@ export const TOP_RATED_API = 'https://api.themoviedb.org/3/movie/top_rated?page=
 
 export const TRAILER_API = 'https://api.themoviedb.org/3/movie/'
 
-export const SUPPORTED_LANGUAGES = [{identifier:'en',name:'English'}, {identifier:'kannada',name:'Kannada'}, {identifier:'tamil',name:'Tamil'}]
+export const SUPPORTED_LANGUAGES = [{ identifier: 'en', name: 'English' }, { identifier: 'kannada', name: 'Kannada' }, { identifier: 'tamil', name: 'Tamil' }]
