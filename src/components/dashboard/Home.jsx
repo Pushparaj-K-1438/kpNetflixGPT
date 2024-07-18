@@ -3,7 +3,6 @@ import useNowPlayingMovies from "../../hooks/useNowPlayingMovies"
 import usePopularMovies from "../../hooks/usePopularMovies";
 import useTopRated from "../../hooks/useTopRated";
 import useUpcoming from "../../hooks/useUpcoming";
-import Header from "../header/Header"
 import MainContainer from "./layout/MainContainer";
 import SecondaryContainer from "./layout/SecondaryContainer";
 import GptMovieSuggestions from "./layout/gpt/GptMovieSuggestions";
@@ -16,7 +15,6 @@ const Home = () => {
   const toggleGpt = useSelector(store => store.gpt);
   return (
     <div className="flex flex-col h-auto w-screen">
-      <Header />
       {
         toggleGpt.isgptPage ? <GptMovieSuggestions /> :
           <div className="flex flex-col h-full px-4 gap-8" style={{ marginTop: '20%' }}>

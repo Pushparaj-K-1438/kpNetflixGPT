@@ -1,24 +1,13 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import Home from "./dashboard/Home"
-import Login from "./auth/Login"
+import { Outlet } from 'react-router-dom';
+import Header from './header/Header';
 
 const Body = () => {
-    const appRoutes = createBrowserRouter([
-        {
-            path: "/",
-            element: <Login />
-        },
-        {
-            path: "/browse",
-            element: <Home />
-        }
-    ]);
+  return (
+    <div className="overflow-x-hidden">
+      <Header />
+      <Outlet />
+    </div>
+  );
+};
 
-    return (
-        <div className="overflow-x-hidden">
-            <RouterProvider router={appRoutes} />
-        </div>
-    )
-}
-
-export default Body
+export default Body;
