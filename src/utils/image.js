@@ -4,4 +4,6 @@ export const HEADER_LOGO = "https://imgs.search.brave.com/8fOx7RB94XAq7dqxpp0NH8
 
 export const MOVIES_IMG_PATH = "https://image.tmdb.org/t/p/w500/";
 
+export const MOVIES_DETAILS_IMG_PATH = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
+
 export const SEARCHED_MOVIES_IMG_PATH = "https://api.themoviedb.org/3/search/movie?query=";

@@ -21,7 +21,7 @@ function App() {
           element: <Home />,
         },
         {
-          path: ':id',
+          path: ':movieId',
           element: <DetailsMovie />,
         }
       ]

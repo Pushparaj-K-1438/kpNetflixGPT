@@ -1,7 +1,6 @@
 import MovieCard from "./MovieCard"
 
 const MovieList = ({title, movies,isFirst}) => {
-  console.log(movies);
   return (
     <div className="flex flex-col gap-2">
       <h3 className={`text-2xl font-semibold ${isFirst ? 'text-white' : 'text-black'}`}>{title}</h3>
